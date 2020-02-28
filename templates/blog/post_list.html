@@ -1,0 +1,31 @@
+{% extends 'blog/index.html' %}
+
+{% block content %}
+
+    <div class="container postlist">
+        {% for post in post_list %}
+            <div class="post">
+                <a href="{% url 'postdetail' pk=post.pk %}"><h3>{{ post.title }}</h3></a>
+                {% if not post.published_date %}
+                    <h6>Created On : {{ post.created_date }}</h6>
+                {% else %}
+                    <h6>Published On : {{ post.published_date }}</h6>
+                {% endif %}
+                <h6>Comments : {{ post.approved_comments.count }}</h6>
+                <hr>
+                <h5>{{ post.text|truncatechars:100 }}</h5>
+                <br>
+                {% if user.is_authenticated %}
+                <button class="btn btn-primary" ><a style="color:white !important;" href="{% url 'updatepost' pk=post.pk %}">Update</a></button>
+                <button class="btn btn-danger" ><a style="color:white !important;" href="{% url 'deletepost' pk=post.pk %}">Delete</a></button>
+                    {% if not post.published_date %}
+                        <button class="btn btn-primary" ><a style="color:white !important;" href="{% url 'publishpost' pk=post.pk %}">Publish</a></button>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <br>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

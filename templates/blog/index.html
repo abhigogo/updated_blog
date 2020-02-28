@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Home</title>
+    <!-- Link for Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- linking CSS to HTML -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <!-- GoogleFonts -->
+    <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- <div class="parallax">
+
+    </div> -->
+
+
+
+    <!-- <div class="parallax">
+
+    </div> -->
+
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-expand-lg navbar-dark" style="background-color:black;">
+          <div class="container">
+            <a class="navbar-brand" href="{% url 'postlist' %}">BlazingPistons.</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Events</a>
+                </li>
+
+                {% if user.is_authenticated %}
+                  <li class="nav-item">
+                  <a class="nav-link" href="{% url 'draftlist' %}">Drafts</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'newpost' %}">Write</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="{% url 'user_logout' %}">LogOut</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div class="container heading">
+
+            <h6>Your daily dose of</h6>
+            <h1>Automotive News</h1>
+
+            <hr>
+        </div>
+
+        {% block content %}
+
+        {% endblock %}
+
+
+
+
+
+
+
+
+    <!-- <div class="container">
+      <div style="height:1000px;background-color:red;font-size:36px">
+        Scroll Up and Down this page to see the parallax scrolling effect.
+        This div is just here to enable scrolling.
+        Tip: Try to remove the background-attachment property to remove the scrolling effect.
+      </div>
+    </div> -->
+
+
+
+    <!-- <div class="container">
+      <div class="content">
+        <div class="row">
+          <div class="col-sm-8">
+            Hello
+          </div>
+          <div class="col-sm-4">
+            Hi
+          </div>
+        </div>
+      </div>
+
+    </div> -->
+    <script src="home_js.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

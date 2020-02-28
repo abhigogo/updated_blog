@@ -1,0 +1,20 @@
+{% extends 'blog/index.html' %}
+
+{% block content %}
+
+    <div class="container loginform">
+        <form action="{% url 'user_login' %}" method="POST">
+            {% csrf_token %}
+            <label for="username" style="color:white;font-family:'Odibee Sans';font-size:40px;">Username : </label>
+            <input type="text" id="username" class="form-control" style="width:40%;background-color:black;color:white;" name="username" placeholder="Enter Username.">
+            <br>
+            <br>
+            <label for="password" style="color:white;font-family: 'Odibee Sans';font-size:40px;">Password : </label>
+            <input type="password" id="password" class="form-control" style="width:40%;background-color:black;color:white;" name="password" placeholder="Enter Password.">
+            <br>
+            <br>
+            <input type="submit" class="btn btn-primary" value="LogIn">
+        </form>
+    </div>
+
+{% endblock %}

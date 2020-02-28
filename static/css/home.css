@@ -1,0 +1,138 @@
+body{
+  background-color: black;
+  color: white;
+  padding : 0;
+  margin : 0;
+}
+
+nav{
+  min-height: 50px !important;
+  position: absolute;
+  background-color : black !important;
+}
+
+.navbar .container .navbar-brand{
+  font-family: 'Acme' !important;
+  font-size: 30px !important;
+}
+
+.navbar .container .collapse .navbar-nav .nav-item .nav-link {
+  font-family: 'Odibee Sans' !important ;
+  font-size: 20px;
+}
+
+.heading {
+  padding-top: 100px;
+}
+
+.heading h6{
+    line-height : 20px;
+}
+
+.heading h1{
+  line-height: 20px;
+  color: #EEEA07;
+  font-family: 'Acme' !important;
+}
+
+.navbar .container .collapse .navbar-nav .nav-item .nav-link:hover{
+  color: #EEEA07;
+}
+
+hr{
+  border-color: white;
+  border-width: 5px;
+}
+
+.registration form {
+    border : 3px solid white !important;
+    border-radius : 15px;
+    width : 70%;
+    margin-left : 15%;
+    margin-top : 50px;
+    font-family: 'Odibee Sans';
+    font-size : 20px;
+    padding-left : 20%;
+}
+
+.registration form .formelems {
+    padding-top : 20px;
+    padding-bottom : 20px;
+}
+
+#id_username{
+    width :50%;
+    background-color : black;
+    color : white;
+    text-align : center;
+}
+
+#id_email{
+    width : 50%;
+    background-color : black;
+    color : white;
+    text-align : center;
+}
+
+#id_password{
+    width : 50%;
+    background-color : black;
+    color : white;
+    text-align : center;
+}
+
+.form-control{
+    border-color : #EEEA07 !important;
+}
+
+.postlist{
+    padding-top : 10px;
+    padding-bottom : 10px;
+}
+
+.postlist .post {
+    border : 3px solid white !important;
+    border-radius : 20px;
+    padding-top : 20px;
+    padding-bottom : 20px;
+    padding-left : 30px;
+    padding-right : 30px;
+}
+
+.postlist .post>h3 {
+   font-family: 'Odibee Sans';
+}
+
+.postlist .post>a{
+   font-family: 'Odibee Sans';
+}
+
+.postlist .post>a:hover{
+    color : #EEEA07;
+    text-decoration : none;
+}
+
+.postlist .post>hr{
+    border-width : 3px;
+}
+
+.postdetail{
+   width : 70%;
+   padding-top : 30px;
+}
+
+.postdetail>hr{
+    border-width : 3px;
+}
+
+
+
+.comments>hr{
+    border-width : 2px;
+}
+
+#name_id, #text_id{
+    width : 50%;
+}
+
+

@@ -1,0 +1,21 @@
+{% extends 'blog/index.html' %}
+
+{% block content %}
+
+    <div class="container registration">
+        {% if registered %}
+            <h3>Go to /login to LogIn.</h3>
+        {% else %}
+            <h3>Fill Out the Form to Register : </h3>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="container formelems">
+                    {% csrf_token %}
+                    {{ userform.as_p }}
+                    {{ profileform.as_p }}
+                    <input type="submit" class="btn btn-primary" value="Register">
+                </div>
+            </form>
+        {% endif %}
+    </div>
+
+{% endblock %}

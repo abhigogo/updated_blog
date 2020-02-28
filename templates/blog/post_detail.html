@@ -1,0 +1,36 @@
+{% extends 'blog/index.html' %}
+
+{% block content %}
+
+    <div class="container postdetail">
+        <h3>{{ post.title }}</h3>
+        {% if not post.published_date %}
+            <h5>Created On : {{ post.created_date }}</h5>
+        {% else %}
+            <h5>Published On : {{ post.published_date }}</h5>
+        {% endif %}
+        <hr>
+        <p>{{ post.text }}</p>
+        <hr>
+        <a href="{% url 'addcomment' pk=post.pk %}"><button class="btn btn-primary">Comment</button></a>
+    </div>
+    <br>
+    <br>
+    <div class="container comments">
+        {% for comment in post.comments.all %}
+            {% if user.is_authenticated or comment.approved_comment %}
+                <h5>{{ comment.text }}</h5>
+                <h6>By : {{ comment.name }}</h6>
+                {% if not comment.approved_comment %}
+                    <a href="{% url 'approvecomment' pk=comment.pk %}"><button class="btn btn-primary">Approve</button></a>
+                    <a href="{% url 'removecomment' pk=comment.pk %}"><button class="btn btn-danger">Remove</button></a>
+                {% endif %}
+                <br>
+                <hr>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}
