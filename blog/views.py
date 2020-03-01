@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse, reverse_lazy
-from .models import post, comment
+from .models import Post, comment
 from django.utils import timezone
 from rest_framework import viewsets
 from .serializers import PostSerializer
@@ -63,46 +63,48 @@ def user_logout(request):
     return HttpResponseRedirect(reverse('postlist'))
 
 class postlist(ListView):
-    model = post
+    model = Post
 
     def get_queryset(self):
-        return post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
+        return Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
 
 class postdetail(DetailView):
-    model = post
+    model = Post
 
 class draftlist(ListView):
-    model = post
+    model = Post
 
     def get_queryset(self):
-        return post.objects.filter(published_date__isnull = True).order_by('created_date')
+        return Post.objects.filter(published_date__isnull = True).order_by('created_date')
 
 class postcreate(CreateView):
-    model = post
+    model = Post
     form_class = post_form
 
+    
+
 class postupdate(UpdateView):
-    model = post
+    model = Post
     fields = ('title','text')
 
 class postdelete(DeleteView):
-    model = post
+    model = Post
     success_url = reverse_lazy('postlist')
 
 def publishpost(request,pk):
-    Post = get_object_or_404(post,pk=pk)
-    Post.publish()
+    post = get_object_or_404(Post,pk=pk)
+    post.publish()
     return redirect('postlist')
 
 def add_comment(request,pk):
-    Post = get_object_or_404(post,pk=pk)
+    post = get_object_or_404(Post,pk=pk)
     if request.method == 'POST':
         form = comment_form(data=request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.post = Post
+            comment.Post = post
             comment.save()
-            return redirect('postdetail',pk=Post.pk)
+            return redirect('postdetail',pk=post.pk)
     else:
         form = comment_form()
     return render(request,'blog/comment_form.html',{'form':form})
@@ -114,10 +116,10 @@ def approve_comment(request,pk):
 
 def delete_comment(request,pk):
     Comment = get_object_or_404(comment,pk=pk)
-    post_pk = Comment.post.pk
+    post_pk = Comment.Post.pk
     Comment.delete()
     return redirect('postdetail',pk=post_pk)
 
 class postview(viewsets.ModelViewSet):
-    queryset = post.objects.all()
+    queryset = Post.objects.all()
     serializer_class = PostSerializer

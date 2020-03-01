@@ -12,9 +12,10 @@ class user_profile(models.Model):
     def __str__(self):
         return self.user.username
 
-class post(models.Model):
+class Post(models.Model):
     title = models.CharField('Title',max_length=100)
     text = models.TextField('Text')
+    image = models.ImageField(upload_to="blog_images",blank=True)
     created_date = models.DateTimeField('Created Date',default=timezone.now())
     published_date = models.DateTimeField('Published Date',blank=True,null=True)
 
@@ -32,7 +33,7 @@ class post(models.Model):
         return self.title
 
 class  comment(models.Model):
-    post = models.ForeignKey(post,on_delete=models.CASCADE,related_name="comments")
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name="comments")
     name = models.CharField('Name',max_length=200)
     text = models.TextField('Text')
     posted_date = models.DateTimeField('Date Posted',default=timezone.now())

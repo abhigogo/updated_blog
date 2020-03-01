@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from blog.models import user_profile, post, comment
+from blog.models import user_profile, Post, comment
 
 class user_form(forms.ModelForm):
 
@@ -25,8 +25,8 @@ class profile_form(forms.ModelForm):
 
 class post_form(forms.ModelForm):
     class Meta:
-        model = post
-        fields = ('title','text')
+        model = Post
+        fields = ('title','text','image',)
 
         widgets = {
             'title':forms.TextInput(attrs={'class':'form-control'}),

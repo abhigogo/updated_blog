@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import post
+from .models import Post
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
-        model = post
+        model = Post
         fields = ('title','created_date','published_date')
 

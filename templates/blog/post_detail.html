@@ -10,6 +10,7 @@
             <h5>Published On : {{ post.published_date }}</h5>
         {% endif %}
         <hr>
+        <img src="{{ post.image.url }}" class="card-img-top" alt="Image Not Available">
         <p>{{ post.text }}</p>
         <hr>
         <a href="{% url 'addcomment' pk=post.pk %}"><button class="btn btn-primary">Comment</button></a>
